@@ -1,88 +1,162 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=League+Spartan' rel='stylesheet'>
   <style>
-    .center {
-      	text-align: center;
+    body::before {
+      content: "";
+      position: fixed;
+      top: -100;
+      left: -400;
+      width: 125%;
+      height: 125%;
+      background: url('https://i.imgur.com/WV0ZS1r.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.2;
+      filter: blur(4px);
+      z-index: -1;
     }
-     h1 {
-      	font-size: 120px;
-        font-family:League Spartan;
-        margin: 60px 0;
+
+    body {
+      font-family: 'League Spartan', sans-serif;
+      background-color: rgba(0, 255, 255, 0.3);
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
-    p { 
-    	font-size: 50px;
-        font-family:League Spartan;
-        margin: 60px 0;
-        }
-   	body::before {
-    	content: "";
-    	position: fixed;
-    	top: -40px;
-    	left: -15px;
-    	width: 125%;
-    	height: 125%;
-    	background: url('https://i.imgur.com/WV0ZS1r.png') no-repeat center center;
-    	background-size: contain;
-    	opacity: 0.2;
-        filter: blur(4px);
-    	z-index: -1;
-  }
 
-  body {
-    	background-color: rgba(0, 255, 255, 0.3);
-    	margin: 0;
-    	padding: 0;
-  }
-    div {
-  		opacity: 1;
-        margin: -40px 0;
-		}
+    h1 {
+      font-size: 60px;
+      margin-top: 40px;
+    }
 
-	div.transbox:hover {
- 		 opacity: 1.0;
-         
-		}
-   div.transbox {
-   	  background-color: #ffffff;
+    p {
+      font-size: 25px;
+      margin-bottom: 30px;
+    }
+
+    .transbox {
+      background-color: #fff;
       border: 3px solid black;
-      opacity: 0.6;
-      width: 400px;
-      margin: 150px auto; 
+      width: 300px;
+      margin: 30px auto;
       padding: 10px;
+      opacity: 0.8;
       transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .transbox:hover {
+      opacity: 1;
+    }
+
+    .transbox img {
+      width: 100%;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border: 2px solid black;
+      width: 300px;
+      text-align: center;
+    }
+
+    .modal-content a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #00cccc;
+      color: black;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .close {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
-<body class="color">
+<body>
 
-<h1 class="center">CALL US!</h1>
+  <h1>CALL US!</h1>
+  <p>Click a photo to call or save the contact.</p>
 
-<p class="center">Choose who to call.</p>
+  <!-- Ashton -->
+  <div class="transbox" onclick="openModal('ashtonModal')">
+    <img src="https://i.imgur.com/HYf58oM.png" alt="Call Ashton">
+  </div>
 
+  <!-- Donovan -->
+  <div class="transbox" onclick="openModal('donovanModal')">
+    <img src="https://i.imgur.com/CfO8Ndl.png" alt="Call Donovan">
+  </div>
 
-<div class="center">
-    <div class="transbox">
-  		<a href="tel:+59995203250">
-    	<img src="https://i.imgur.com/HYf58oM.png" alt="Call Ashton" style="width:420px;height:236px;">
-  		</a>
-	</div>
-</div>
+  <!-- Raymond -->
+  <div class="transbox" onclick="openModal('raymondModal')">
+    <img src="https://i.imgur.com/V4ov4ED.png" alt="Call Raymond">
+  </div>
 
-<div class="center">
-<div class="transbox">
-  <a href="tel:+59995172265">
-    <img src="https://i.imgur.com/CfO8Ndl.png" alt="Call Donovan" style="width:420px;height:236px;">
-  </a>
-</div>
-</div>
+  <!-- Modals -->
+  <div id="ashtonModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('ashtonModal')">&times;</span>
+      <h3>Contact Ashton</h3>
+      <a href="tel:+59995203250">Call</a>
+      <a href="Ashton.vcf" download>Save Contact</a>
+    </div>
+  </div>
 
-<div class="center">
-<div class="transbox">
-  <a href="tel:+59996827641">
-    <img src="https://i.imgur.com/V4ov4ED.png" alt="Call Raymond" style="width:420px;height:236px;">
-  </a>
-</div>
-</div>
+  <div id="donovanModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('donovanModal')">&times;</span>
+      <h3>Contact Donovan</h3>
+      <a href="tel:+59995172265">Call</a>
+      <a href="Donovan.vcf" download>Save Contact</a>
+    </div>
+  </div>
+
+  <div id="raymondModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('raymondModal')">&times;</span>
+      <h3>Contact Raymond</h3>
+      <a href="tel:+59996827641">Call</a>
+      <a href="Raymond.vcf" download>Save Contact</a>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      ['ashtonModal', 'donovanModal', 'raymondModal'].forEach(id => {
+        const modal = document.getElementById(id);
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
